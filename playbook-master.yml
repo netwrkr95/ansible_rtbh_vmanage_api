@@ -1,0 +1,31 @@
+---
+- name: Execute vManage Playbook
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - secrets.yml
+
+  tasks:
+    - include_tasks: get-cookie.yml
+      when: viptela_api_cookie is not defined
+
+    - name: Modify Application List
+      modify_app_list:
+        vmanage_ip: "{{ vmanage_ip }}"
+        cookie: "{{ viptela_api_cookie }}"
+        name: "Suspect_Video_Apps"
+        description: "Created by Craig' Ansible Playbook"
+        apps:
+          - twitter
+          #- cbs
+          #- espn-browsing
+      tags: apps
+      notify: update vsmart policy
+
+  handlers:
+    - name: update vsmart policy
+    
+      attachfeature:
+        vmanage_ip: "{{ vmanage_ip }}"
+        cookie: "{{ viptela_api_cookie }}"

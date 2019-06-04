@@ -15,12 +15,24 @@
         vmanage_ip: "{{ vmanage_ip }}"
         cookie: "{{ viptela_api_cookie }}"
         name: "Suspect_Video_Apps"
-        description: "Created by Craig' Ansible Playbook"
+        description: "Created by Craig's Ansible Playbook"
         apps:
           - twitter
           #- cbs
           #- espn-browsing
       tags: apps
+      notify: update vsmart policy
+
+    - name: Modify VPN List
+      modify_vpn_list:
+        vmanage_ip: "{{ vmanage_ip }}"
+        cookie: "{{ viptela_api_cookie }}"
+        name: "All_VPN_RTBH"
+        description: "Created by Craig's Ansible Playbook"
+        vpns:
+          - 1-10
+          - 200
+      tags: vpns
       notify: update vsmart policy
 
   handlers:

@@ -4,11 +4,11 @@ This is revised code for vManage 18.3.3 REST API's that changed from 17.x, as se
 
 ### Overview and Use Case
 
-The purpose of the RTBH concept is identifying an application(s) and taking an action for that application across, in this case, the vManage controlled SD-WAN.  For this use case, the operator has the ability to specify the application, from the available applications in the policy, and apply a "scavenger class" or "black hole action" to each of the nodes within the list.  This allows the operator to limit and control specific applications within an enterprise or agency.  If the application is deemed as harmful, the operator can black-hole the traffic based on the policy as an option as well. 
+The purpose of the RTBH concept is identifying an application(s), the VPN(s) the policy should be applied towards, and taking an action for that application across, in this case, the vManage controlled SD-WAN.  For this use case, the operator has the ability to specify the application, from the available applications in the policy, and apply a "scavenger class" or "black hole action" to each of the nodes within the list.  This allows the operator to limit and control specific applications within an enterprise or agency.  If the application is deemed as harmful, the operator can black-hole the traffic based on the policy as an option as well. 
 
 #### vManage Policy Example
 
-Below is a preview the application policy example used:
+Below is a preview of the application list applied to the policy:
 
 ```
 lists
@@ -16,6 +16,15 @@ lists
    app twitter 
    app espn-browsing 
    app espn 
+  !
+```
+
+Below is a preview of the VPN list that is applied to the policy:
+
+```
+  vpn-list All_VPN_RTBH
+   vpn 1-10 
+   vpn 200 
   !
 ```
 
@@ -29,7 +38,7 @@ Below is a preview of the enforcement action of the application policy "match":
   !
 ```
 
-It should be noted that the operator has the ability, within vManage policy, to modify other key elements that could also be leveraged for this concept, such as VPN's, modification of the site list (for which routers the policy should be enforced on. These are some of the basic examples.
+It should be noted that the operator has the ability, within vManage policy, to modify other key elements that could also be leveraged for this concept, such the site list (for which routers the policy should be enforced on). These are some of the basic examples.
 
 
 #### Getting Started

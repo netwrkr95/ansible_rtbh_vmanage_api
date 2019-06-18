@@ -18,7 +18,7 @@
         description: "Created by Craig's Ansible Playbook"
         apps:
           - twitter
-          #- cbs
+          - cbs
           #- espn-browsing
       tags: apps
       notify: update vsmart policy
@@ -31,7 +31,7 @@
         description: "Created by Craig's Ansible Playbook"
         vpns:
           - 1-10
-          - 200
+          #- 100
       tags: vpns
       notify: update vsmart policy
 
